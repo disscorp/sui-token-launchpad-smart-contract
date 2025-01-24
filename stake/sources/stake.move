@@ -1,7 +1,4 @@
 module seapad::stake {
-    // !!! FOR AUDITOR!!!
-    // Look at math part of this module.
-
     use seapad::stake_config;
     use iota::coin::{Coin};
     use iota::tx_context::{TxContext, sender};
