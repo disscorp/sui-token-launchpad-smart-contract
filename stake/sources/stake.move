@@ -7,13 +7,13 @@ module seapad::stake {
     use iota::tx_context::{TxContext, sender};
     use seapad::stake_config::GlobalConfig;
     use iota::coin;
-    use seapad::math128;
     use iota::table;
     use iota::transfer::share_object;
     use iota::object::UID;
     use iota::object;
     use iota::event;
     use std::u64;
+    use std::u128;
 
     /// Pool does not exist.
     const ERR_NO_POOL: u64 = 100;
@@ -144,8 +144,8 @@ module seapad::stake {
         let origin_decimals = (decimalR as u128);
         assert!(origin_decimals <= 10, ERR_INVALID_REWARD_DECIMALS);
 
-        let reward_scale = ACCUM_REWARD_SCALE / math128::pow(10, origin_decimals);
-        let stake_scale = math128::pow(10, (decimalS as u128));
+        let reward_scale = ACCUM_REWARD_SCALE / u128::pow(10, (origin_decimals as u8));
+        let stake_scale = u128::pow(10, (decimalS as u8));
         let scale = stake_scale * reward_scale;
         let reward_amount_ = coin::value(&reward_coins);
 
