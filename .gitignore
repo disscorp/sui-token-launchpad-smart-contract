@@ -1,4 +1,4 @@
-/build/
+build/
 *.lock
 /nft/build/
 /seapad/build/

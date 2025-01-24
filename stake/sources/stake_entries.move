@@ -1,13 +1,13 @@
 /// Collection of entrypoints to handle staking pools.
 module seapad::stake_entries {
     use seapad::stake;
-    use sui::tx_context::{TxContext, sender};
-    use sui::coin::{Coin};
+    use iota::tx_context::{TxContext, sender};
+    use iota::coin::{Coin};
     use seapad::stake_config::GlobalConfig;
-    use sui::clock::Clock;
+    use iota::clock::Clock;
     use seapad::stake::StakePool;
-    use sui::transfer;
-    use sui::clock;
+    use iota::transfer;
+    use iota::clock;
     use seapad::stake_config;
 
     /// Register new staking pool with staking coin `S` and reward coin `R`.

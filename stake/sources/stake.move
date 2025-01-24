@@ -3,17 +3,17 @@ module seapad::stake {
     // Look at math part of this module.
 
     use seapad::stake_config;
-    use sui::coin::{Coin};
-    use sui::tx_context::{TxContext, sender};
+    use iota::coin::{Coin};
+    use iota::tx_context::{TxContext, sender};
     use seapad::stake_config::GlobalConfig;
-    use sui::coin;
+    use iota::coin;
     use seapad::math128;
-    use sui::table;
-    use sui::transfer::share_object;
-    use sui::object::UID;
-    use sui::object;
-    use sui::event;
-    use sui::math;
+    use iota::table;
+    use iota::transfer::share_object;
+    use iota::object::UID;
+    use iota::object;
+    use iota::event;
+    use std::u64;
 
     /// Pool does not exist.
     const ERR_NO_POOL: u64 = 100;
@@ -513,7 +513,7 @@ module seapad::stake {
     public fun get_unlock_time<S, R>(pool: &StakePool<S, R>, user_addr: address): u64 {
         assert!(table::contains(&pool.stakes, user_addr), ERR_NO_STAKE);
 
-        math::min(pool.end_timestamp, table::borrow(&pool.stakes, user_addr).unlock_time)
+        u64::min(pool.end_timestamp, table::borrow(&pool.stakes, user_addr).unlock_time)
     }
 
     /// Checks if stake is unlocked.
@@ -524,7 +524,7 @@ module seapad::stake {
         assert!(table::contains(&pool.stakes, user_addr), ERR_NO_STAKE);
 
         let current_time = timestamp_ms / 1000;
-        let unlock_time = math::min(pool.end_timestamp, table::borrow(&pool.stakes, user_addr).unlock_time);
+        let unlock_time = u64::min(pool.end_timestamp, table::borrow(&pool.stakes, user_addr).unlock_time);
 
         current_time >= unlock_time
     }
@@ -617,7 +617,7 @@ module seapad::stake {
     ///     * `pool` - pool to get time.
     /// Returns timestamp.
     fun get_time_for_last_update<S, R>(pool: &StakePool<S, R>, timestamp_now: u64): u64 {
-        math::min(pool.end_timestamp, timestamp_now / 1000) //@todo review math div
+        u64::min(pool.end_timestamp, timestamp_now / 1000) //@todo review math div
     }
 
     /// Get total staked amount in the pool.

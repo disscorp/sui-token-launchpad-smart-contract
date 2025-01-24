@@ -1,16 +1,16 @@
 #[test_only]
 module seapad::emergency_tests {
-    use sui::test_scenario::{Scenario, next_tx, ctx, return_shared, end, take_from_sender, return_to_sender};
-    use sui::test_scenario;
+    use iota::test_scenario::{Scenario, next_tx, ctx, return_shared, end, take_from_sender, return_to_sender};
+    use iota::test_scenario;
     use seapad::stake_config;
     use seapad::stake_config::GlobalConfig;
     use seapad::stake;
-    use sui::coin;
+    use iota::coin;
     use seapad::stake_entries;
-    use sui::clock::Clock;
-    use sui::clock;
+    use iota::clock::Clock;
+    use iota::clock;
     use seapad::stake::StakePool;
-    use sui::coin::Coin;
+    use iota::coin::Coin;
 
     /// this is number of decimals in both StakeCoin and RewardCoin by default, named like that for readability
     const ONE_COIN: u64 = 1000000;

@@ -6,10 +6,10 @@ module seapad::stake_config {
 
     // Errors.
 
-    use sui::tx_context::{TxContext, sender};
-    use sui::transfer;
-    use sui::object::UID;
-    use sui::object;
+    use iota::tx_context::{TxContext, sender};
+    use iota::transfer;
+    use iota::object::UID;
+    use iota::object;
 
     /// Doesn't have enough permissions: not a current admin account.
     const ERR_NO_PERMISSIONS: u64 = 200;
